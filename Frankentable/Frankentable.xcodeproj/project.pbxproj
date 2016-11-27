@@ -13,6 +13,7 @@
 		1E40854E1DEA4D380025BAC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E40854C1DEA4D380025BAC8 /* LaunchScreen.storyboard */; };
 		1E4085561DEA4D520025BAC8 /* Data.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1E4085551DEA4D520025BAC8 /* Data.txt */; };
 		1E4085581DEA50C70025BAC8 /* FrankenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4085571DEA50C70025BAC8 /* FrankenTableViewController.swift */; };
+		47DB310F1DEB98D4004A570D /* FrankenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DB310E1DEB98D4004A570D /* FrankenTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		1E40854F1DEA4D380025BAC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E4085551DEA4D520025BAC8 /* Data.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Data.txt; sourceTree = "<group>"; };
 		1E4085571DEA50C70025BAC8 /* FrankenTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrankenTableViewController.swift; sourceTree = "<group>"; };
+		47DB310E1DEB98D4004A570D /* FrankenTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrankenTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +58,10 @@
 		1E4085421DEA4D380025BAC8 /* Frankentable */ = {
 			isa = PBXGroup;
 			children = (
+				1E4085571DEA50C70025BAC8 /* FrankenTableViewController.swift */,
+				47DB310E1DEB98D4004A570D /* FrankenTableViewCell.swift */,
 				1E4085431DEA4D380025BAC8 /* AppDelegate.swift */,
 				1E4085471DEA4D380025BAC8 /* Main.storyboard */,
-				1E4085571DEA50C70025BAC8 /* FrankenTableViewController.swift */,
 				1E40854A1DEA4D380025BAC8 /* Assets.xcassets */,
 				1E40854C1DEA4D380025BAC8 /* LaunchScreen.storyboard */,
 				1E40854F1DEA4D380025BAC8 /* Info.plist */,
@@ -142,6 +145,7 @@
 			files = (
 				1E4085441DEA4D380025BAC8 /* AppDelegate.swift in Sources */,
 				1E4085581DEA50C70025BAC8 /* FrankenTableViewController.swift in Sources */,
+				47DB310F1DEB98D4004A570D /* FrankenTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +269,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Frankentable/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.Frankentable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -277,6 +282,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Frankentable/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.Frankentable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -303,6 +309,7 @@
 				1E4085541DEA4D380025BAC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
