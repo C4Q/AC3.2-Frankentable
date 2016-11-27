@@ -1,15 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="T5W-ny-vM1">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="T5W-ny-vM1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Franken Table View Controller-->
         <scene sceneID="gTg-zI-UWI">
             <objects>
                 <tableViewController id="gLM-o7-5qh" customClass="FrankenTableViewController" customModule="Frankentable" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,11 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="VN8-Oc-2g4">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="uniqueWordCellIdentifier" id="VN8-Oc-2g4">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VN8-Oc-2g4" id="VFw-Ys-3g4">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -32,7 +33,21 @@
                             <outlet property="delegate" destination="gLM-o7-5qh" id="wcx-Kd-wcT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Bef-ci-n46"/>
+                    <navigationItem key="navigationItem" id="Bef-ci-n46">
+                        <nil key="title"/>
+                        <rightBarButtonItems>
+                            <barButtonItem title="A-Z" id="SMu-rp-cyH">
+                                <connections>
+                                    <action selector="sortByAlphabeticalOrderTapped:" destination="gLM-o7-5qh" id="Iqk-Qt-hop"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Frequency" id="VJt-bE-Kv7">
+                                <connections>
+                                    <action selector="sortByFrequencyTapped:" destination="gLM-o7-5qh" id="Iyn-u9-FUL"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZx-oL-GLE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
