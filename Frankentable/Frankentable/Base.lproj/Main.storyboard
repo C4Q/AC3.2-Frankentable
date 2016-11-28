@@ -42,12 +42,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Frankenstein" id="Bef-ci-n46">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="VT0-CX-dSO">
-                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="gzU-6b-Yt6">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="KPz-XZ-b7T">
+                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="hk9-1s-8gW">
                                 <rect key="frame" x="310" y="6" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="switchSwitched:" destination="gLM-o7-5qh" eventType="valueChanged" id="su5-Nf-8XJ"/>
+                                    <action selector="switchSwitched:" destination="gLM-o7-5qh" eventType="valueChanged" id="Qee-Pl-Clk"/>
                                 </connections>
                             </switch>
                         </barButtonItem>
