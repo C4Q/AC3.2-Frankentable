@@ -9,7 +9,9 @@
 import UIKit
 
 class FrankenTableViewController: UITableViewController {
-
+    var theText = ""
+    var wordCountingDictionary = [String: Int]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,36 +20,45 @@ class FrankenTableViewController: UITableViewController {
             let text = String(data: data, encoding: .utf8) {
             
             // here's your text
+            self.theText = text
             print(text)
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+   
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        let allTheWords = self.theText.components(separatedBy: CharacterSet.punctuationCharacters.union(.whitespaces)).filter ({ !$0.isEmpty })
+        for word in allTheWords {
+            if self.wordCountingDictionary[word] == nil {
+                self.wordCountingDictionary[word] = 1
+            } else {
+                self.wordCountingDictionary[word]! += 1
+            }
+        }
+        
+        return self.wordCountingDictionary.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "wordCell", for: indexPath)
+        var dictionaryArray = [[String: Int]]()
         // Configure the cell...
-
+        for words in self.wordCountingDictionary {
+            dictionaryArray.append([words.key:words.value])
+        }
+        
+        cell.textLabel?.text = String(describing: dictionaryArray[indexPath.row])
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
