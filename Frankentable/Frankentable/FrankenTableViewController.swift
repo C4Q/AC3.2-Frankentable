@@ -9,89 +9,149 @@
 import UIKit
 
 class FrankenTableViewController: UITableViewController {
-
+    //MARK: - Properties
+    let identifier: String = "frankensteinCell"
+    var wordsFrequencyArray: [(String, Int)] = []
+    var alphabetArray: [Character] = []
+    var frequencyArray: [Int] = []
+    var isSwitchOn: Bool = true
+    
+    //MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        createAlphabetArray()
+        
         if let url = Bundle.main.url(forResource: "Data", withExtension: "txt"),
             let data = try? Data(contentsOf: url),
             let text = String(data: data, encoding: .utf8) {
-            
-            // here's your text
-            print(text)
+            wordsFrequencyArray = createArrayOfWords(input: text)
+            frequencyArray = createFrequencyArray()
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func createAlphabetArray() {
+        for letter in "abcdefghijklmnopqrstuvwxyz".characters {
+            alphabetArray.append(letter)
+        }
     }
-
+    
+    func createArrayOfWords(input: String) -> [(String, Int)]{
+        var dict = [String: Int]()
+        
+        //accounting for punctuation marks in text file
+        var cSet = CharacterSet()
+        cSet.insert(charactersIn: ".,?!:;&()*+-@#$%^`~_<>'0123456789\n ")
+        
+        let frankensteinArray: [String] = input.components(separatedBy: cSet).map { $0.lowercased() }
+        for i in frankensteinArray {
+            dict[i] = (dict[i] ?? 0) + 1
+        }
+        dict.removeValue(forKey: "")
+        let x = dict.sorted(by: { $0.value > $1.value })
+        return x
+    }
+    
+    func createFrequencyArray() -> [Int]{
+        var sectionTitles = Set<Int>()
+        
+        for i in wordsFrequencyArray {
+            sectionTitles.insert(i.1)
+        }
+        return Array(sectionTitles).sorted(by: { $0 > $1 })
+    }
+    
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        if self.isSwitchOn {
+            return alphabetArray.count
+        } else {
+            return frequencyArray.count
+        }
     }
-
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if self.isSwitchOn {
+            return String(alphabetArray[section])
+        } else {
+            return String(frequencyArray[section])
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        if self.isSwitchOn {
+            var wordsInSection = [String]()
+            let sectionCharacter = self.alphabetArray[section]
+            
+            for (word, _) in wordsFrequencyArray {
+                let array = Array(word.characters)
+                if array[0] == sectionCharacter {
+                    wordsInSection.append(word)
+                }
+            }
+            return wordsInSection.count
+        } else {
+            
+            var wordsWithGivenFrequency = [String]()
+            let sectionFrequency = Array(self.frequencyArray)[section]
+            
+            for (word,numberOfOccurrences) in wordsFrequencyArray {
+                if numberOfOccurrences == Int(sectionFrequency) {
+                    wordsWithGivenFrequency.append(word)
+                    
+                }
+            }
+            return wordsWithGivenFrequency.count
+        }
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.identifier, for: indexPath)
+        
+        if self.isSwitchOn {
+            var wordsInSection: [(key:String, value:Int)] = []
+            let sectionTitle = self.alphabetArray[indexPath.section]
+            
+            for (word, numberOfOccurrences) in wordsFrequencyArray {
+                let array = Array(word.characters)
+                if array[0] == sectionTitle {
+                    wordsInSection.append((key: word, value: numberOfOccurrences))
+                }
+            }
+            let word = wordsInSection[indexPath.row].key
+            let frequency = wordsInSection[indexPath.row].value
+            
+            cell.textLabel?.text = ("\(word) (\(frequency))")
+        } else {
+            
+            var wordsWithGivenFrequency: [String] = []
+            let sectionTitle = Array(self.frequencyArray)[indexPath.section]
+            
+            for (word,numberOfOccurrences) in wordsFrequencyArray {
+                if numberOfOccurrences == Int(sectionTitle) {
+                    wordsWithGivenFrequency.append(word)
+                }
+            }
+            let word = wordsWithGivenFrequency[indexPath.row]
+            
+            cell.textLabel?.text = ("\(word)")
+        }
+        
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    //MARK: - Actions
+    @IBAction func switchValueChanged(_ sender: UISwitch) {
+        if sender.isOn {
+            print("Currently sorting alphabetically.")
+            self.isSwitchOn = true
+        }
+        else {
+            print("Currently sorting by word frequency.")
+            self.isSwitchOn = false
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
