@@ -56,15 +56,23 @@
 		1E4085421DEA4D380025BAC8 /* Frankentable */ = {
 			isa = PBXGroup;
 			children = (
-				1E4085431DEA4D380025BAC8 /* AppDelegate.swift */,
 				1E4085471DEA4D380025BAC8 /* Main.storyboard */,
 				1E4085571DEA50C70025BAC8 /* FrankenTableViewController.swift */,
+				1E4085551DEA4D520025BAC8 /* Data.txt */,
+				B91980F31DEB641B00CE5424 /* Supporting Files */,
+			);
+			path = Frankentable;
+			sourceTree = "<group>";
+		};
+		B91980F31DEB641B00CE5424 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1E4085431DEA4D380025BAC8 /* AppDelegate.swift */,
 				1E40854A1DEA4D380025BAC8 /* Assets.xcassets */,
 				1E40854C1DEA4D380025BAC8 /* LaunchScreen.storyboard */,
 				1E40854F1DEA4D380025BAC8 /* Info.plist */,
-				1E4085551DEA4D520025BAC8 /* Data.txt */,
 			);
-			path = Frankentable;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,7 +215,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -251,7 +259,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -303,6 +311,7 @@
 				1E4085541DEA4D380025BAC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
